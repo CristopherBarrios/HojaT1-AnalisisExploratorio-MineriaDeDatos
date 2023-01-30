@@ -40,6 +40,103 @@ print(DataFrame.NombreDeLaVariables)
 ```
 
 ### 3. (6 puntos) Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas. Explique todos los resultados.
+Segun lo que hemos investigado y tambien a los conocimientos previos que se han tenido sobre estadistica, se utiliza la curtoses para verificar cuantos datos se encuentran cerca de la media. se determina que las variables cuantitativas tuvieron un coeficiente mayor a uno, (positivo).
+referencia: https://economipedia.com/definiciones/curtosis.html
+
+
+Libreria para utilizar la curstosis
+
+```{r}
+#instalar
+#install.packages('e1071')
+library(e1071)
+
+```
+
+Curtosis de popularidad
+```{r}
+popularity = datos$popularity
+kurtosis(popularity)
+```
+
+
+Curtosis de budget(presupuesto)
+```{r}
+budget = datos$budget
+kurtosis(budget)
+
+```
+
+
+Curtosis de revenue
+```{r}
+revenue = datos$revenue
+kurtosis(revenue)
+```
+
+
+Curtosis de runtime
+```{r}
+runtime = datos$runtime
+kurtosis(runtime)
+```
+
+
+Curtosis de VoteCount
+```{r}
+vote_count = datos$voteCount
+kurtosis(vote_count)
+```
+
+
+Curtosis de VoteAvg
+```{r}
+vote_average = datos$voteAvg
+kurtosis(vote_average)
+```
+
+
+Curtosis de GenresAmount
+```{r}
+GenresA = datos$genresAmount
+kurtosis(GenresA)
+```
+
+
+Curtosis de productionCoAmount
+```{r}
+ProductionCoA = datos$productionCoAmount
+kurtosis(ProductionCoA)
+```
+
+
+Curtosis de ProductCountriesAmount
+```{r}
+ProducCountrieA = datos$productionCountriesAmount
+kurtosis(ProducCountrieA)
+```
+
+
+Curtosis de ActorsAmount
+```{r}
+ActorsA = datos$actorsAmount
+kurtosis(ActorsA)
+```
+
+
+Curtosis de CastMenAmount
+```{r}
+#No tengo ni la menor idea
+```
+
+Curtosis de CastWomenAmount
+```{r}
+#tampoco como
+```
+
+##### Variables cualitativas tabla de frecuencias
+
+
 
 ## 4. Responda las siguientes preguntas:
 

@@ -418,6 +418,62 @@ print(DataFrame.NombreDeLaVariables)</code></pre>
 <h3>3. (6 puntos) Investigue si las variables cuantitativas siguen una
 distribución normal y haga una tabla de frecuencias de las variables
 cualitativas. Explique todos los resultados.</h3>
+<p>Segun lo que hemos investigado y tambien a los conocimientos previos
+que se han tenido sobre estadistica, se utiliza la curtoses para
+verificar cuantos datos se encuentran cerca de la media. se determina
+que las variables cuantitativas tuvieron un coeficiente mayor a uno,
+(positivo). referencia: <a href="https://economipedia.com/definiciones/curtosis.html" class="uri">https://economipedia.com/definiciones/curtosis.html</a></p>
+<p>Libreria para utilizar la curstosis</p>
+<pre class="r"><code>#instalar
+#install.packages(&#39;e1071&#39;)
+library(e1071)</code></pre>
+<p>Curtosis de popularidad</p>
+<pre class="r"><code>popularity = datos$popularity
+kurtosis(popularity)</code></pre>
+<pre><code>## [1] 1225.333</code></pre>
+<p>Curtosis de budget(presupuesto)</p>
+<pre class="r"><code>budget = datos$budget
+kurtosis(budget)</code></pre>
+<pre><code>## [1] 13.20779</code></pre>
+<p>Curtosis de revenue</p>
+<pre class="r"><code>revenue = datos$revenue
+kurtosis(revenue)</code></pre>
+<pre><code>## [1] 55.89168</code></pre>
+<p>Curtosis de runtime</p>
+<pre class="r"><code>runtime = datos$runtime
+kurtosis(runtime)</code></pre>
+<pre><code>## [1] 35.52866</code></pre>
+<p>Curtosis de VoteCount</p>
+<pre class="r"><code>vote_count = datos$voteCount
+kurtosis(vote_count)</code></pre>
+<pre><code>## [1] 22.76501</code></pre>
+<p>Curtosis de VoteAvg</p>
+<pre class="r"><code>vote_average = datos$voteAvg
+kurtosis(vote_average)</code></pre>
+<pre><code>## [1] 1.484826</code></pre>
+<p>Curtosis de GenresAmount</p>
+<pre class="r"><code>GenresA = datos$genresAmount
+kurtosis(GenresA)</code></pre>
+<pre><code>## [1] 2.104824</code></pre>
+<p>Curtosis de productionCoAmount</p>
+<pre class="r"><code>ProductionCoA = datos$productionCoAmount
+kurtosis(ProductionCoA)</code></pre>
+<pre><code>## [1] 140.2735</code></pre>
+<p>Curtosis de ProductCountriesAmount</p>
+<pre class="r"><code>ProducCountrieA = datos$productionCountriesAmount
+kurtosis(ProducCountrieA)</code></pre>
+<pre><code>## [1] 751.2015</code></pre>
+<p>Curtosis de ActorsAmount</p>
+<pre class="r"><code>ActorsA = datos$actorsAmount
+kurtosis(ActorsA)</code></pre>
+<pre><code>## [1] 371.0959</code></pre>
+<p>Curtosis de CastMenAmount</p>
+<pre class="r"><code>#No tengo ni la menor idea</code></pre>
+<p>Curtosis de CastWomenAmount</p>
+<pre class="r"><code>#tampoco como</code></pre>
+<div id="variables-cualitativas-tabla-de-frecuencias" class="section level5">
+<h5>Variables cualitativas tabla de frecuencias</h5>
+</div>
 </div>
 <div id="responda-las-siguientes-preguntas" class="section level2">
 <h2>4. Responda las siguientes preguntas:</h2>
