@@ -480,10 +480,36 @@ kurtosis(ActorsA)</code></pre>
 <div id="puntos-cuáles-son-las-10-películas-que-contaron-con-más-presupuesto" class="section level3">
 <h3>4.1. (3 puntos) ¿Cuáles son las 10 películas que contaron con más
 presupuesto?</h3>
+<pre class="r"><code>topbudget &lt;- head(order(datos$budget, decreasing = T),n=10)
+datos[topbudget, c(&quot;title&quot;,(&quot;budget&quot;))]</code></pre>
+<pre><code>##                                            title    budget
+## 717  Pirates of the Caribbean: On Stranger Tides 380000000
+## 4711                     Avengers: Age of Ultron 365000000
+## 5953                           Avengers: Endgame 356000000
+## 164     Pirates of the Caribbean: At World&#39;s End 300000000
+## 4954                              Justice League 300000000
+## 5954                      Avengers: Infinity War 300000000
+## 608                             Superman Returns 270000000
+## 3792                                     Tangled 260000000
+## 7135                               The Lion King 260000000
+## 281                                 Spider-Man 3 258000000</code></pre>
 </div>
 <div id="puntos-cuáles-son-las-10-películas-que-más-ingresos-tuvieron" class="section level3">
 <h3>4.2. (3 puntos) ¿Cuáles son las 10 películas que más ingresos
 tuvieron?</h3>
+<pre class="r"><code>toprevenue &lt;- head(order(datos$revenue, decreasing = T), n=10)
+datos[toprevenue,c(&quot;title&quot;,&quot;revenue&quot;)]</code></pre>
+<pre><code>##                             title    revenue
+## 3211                       Avatar 2847246203
+## 5953            Avengers: Endgame 2797800564
+## 308                       Titanic 2187463944
+## 4948 Star Wars: The Force Awakens 2068223624
+## 5954       Avengers: Infinity War 2046239637
+## 4915               Jurassic World 1671713208
+## 7135                The Lion King 1667635327
+## 9050      Spider-Man: No Way Home 1631853496
+## 3398                 The Avengers 1518815515
+## 5088                    Furious 7 1515047671</code></pre>
 </div>
 <div id="puntos-cuál-es-la-película-que-más-votos-tuvo" class="section level3">
 <h3>4.3. (3 puntos) ¿Cuál es la película que más votos tuvo?</h3>

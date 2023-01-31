@@ -141,8 +141,16 @@ Curtosis de CastWomenAmount
 ## 4. Responda las siguientes preguntas:
 
 ### 4.1. (3 puntos) ¿Cuáles son las 10 películas que contaron con más presupuesto?
+```{r}
+topbudget <- head(order(datos$budget, decreasing = T),n=10)
+datos[topbudget, c("title",("budget"))]
+```
 
 ### 4.2. (3 puntos) ¿Cuáles son las 10 películas que más ingresos tuvieron?
+```{r}
+toprevenue <- head(order(datos$revenue, decreasing = T), n=10)
+datos[toprevenue,c("title","revenue")]
+```
 
 ### 4.3. (3 puntos) ¿Cuál es la película que más votos tuvo?
 
