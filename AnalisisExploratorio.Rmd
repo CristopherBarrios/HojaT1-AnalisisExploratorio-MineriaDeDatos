@@ -153,12 +153,49 @@ datos[toprevenue,c("title","revenue")]
 ```
 
 ### 4.3. (3 puntos) ¿Cuál es la película que más votos tuvo?
+```{r}
+topcount <- head(order(datos$voteCount, decreasing = T), n=1)
+datos[topcount,c("title","voteCount")]
+```
 
 ### 4.4. (3 puntos) ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
 
 ### 4.5. (8 puntos) ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
+```{r}
+#title, titulo
+#releaseDAte, fecha de lanzamiento
+Dates <- data.frame(datos$title, datos$releaseDate)
+PorAnioDesc <- data.frame(Dates[order(Dates$datos.releaseDate),])
+year1 <- data.frame(table(substring(PorAnioDesc$datos.releaseDate,1,4)))
+finales <- as.numeric(substring(PorAnioDesc$datos.releaseDate,1,4))
+hist(finales,breaks = 100)
+```
+
 
 ### 4.6. (9 puntos) ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
+```{r}
+LicaPopular <- datos[order(datos$popularity,decreasing = TRUE),]
+top20 <- LicaPopular[1:20,c("genres")]
+genres20 <- unlist(strsplit(as.character(top20), "\\|"))
+genres20
+```
+
+El genero principal de las peliculas es:
+```{r}
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+topGenre20 <- getmode(genres20)
+topGenre20
+
+```
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$genres), "\\|"))
+barplot(table(totalGenres))
+```
 
 ### 4.7. (8 puntos) ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 
