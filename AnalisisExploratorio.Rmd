@@ -17,11 +17,15 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
 datos <- read.csv("movies.csv")
+
 ```
 
 ### 1. (3 puntos) Haga una exploración rápida de sus datos, para eso haga un resumen de su conjunto de datos.
+```{r}
+summary(datos)
+```
 
-Se tienen `r nrow(datos)` filas, con `r ncol (datos)` variables
+
 
 ### 2. (5 puntos) Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
 
@@ -126,17 +130,91 @@ kurtosis(ActorsA)
 
 Curtosis de CastMenAmount
 ```{r}
-#No tengo ni la menor idea
+datos$castMenAmount<-as.numeric(datos$castMenAmount)
+castMale = datos$castMenAmount
+kurtosis(castMale, na.rm = T)
 ```
 
 Curtosis de CastWomenAmount
 ```{r}
-#tampoco como
+datos$castWomenAmount<-as.numeric(datos$castWomenAmount)
+castWomen = datos$castWomenAmount
+kurtosis(castWomen, na.rm = T)
 ```
 
 ##### Variables cualitativas tabla de frecuencias
 
+original_title
+```{r}
+#table(datos$originalTitle)
+```
 
+originalLanguage
+```{r}
+table(datos$originalLanguage)
+```
+title
+```{r}
+#table(datos$title)
+```
+
+homePage
+```{r}
+#table(datos$homePage)
+```
+
+video
+```{r}
+table(datos$video)
+```
+director
+```{r}
+#table(datos$director)
+
+```
+genres
+```{r}
+#table(datos$genres)
+
+```
+productionCompany
+```{r}
+#table(datos$productionCompany)
+
+```
+productionCompanyCountry
+```{r}
+#table(datos$productionCompanyCountry)
+
+```
+productionCountry
+```{r}
+#table(datos$productionCountry)
+```
+
+releaseDate
+```{r}
+#table(datos$releaseDate)
+
+```
+
+actors
+```{r}
+#table(datos$actors)
+
+```
+
+actorsPopularity
+```{r}
+#table(datos$actorsPopularity)
+
+```
+
+actorsCharacter
+```{r}
+#table(datos$actorsCharacter)
+
+```
 
 ## 4. Responda las siguientes preguntas:
 
