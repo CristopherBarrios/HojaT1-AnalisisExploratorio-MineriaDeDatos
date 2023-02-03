@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(dplyr)
 library(ggplot2)
+library(tidyr)
+
 datos <- read.csv("movies.csv")
 
 ```
@@ -242,6 +244,13 @@ datos[topcount,c("title","voteCount")]
 
 ### 4.4. (3 puntos) ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
 
+La película con la peor votación es: I'm Being Harassed by the Sexiest Man of the Year, pero es importante resaltar que este dato no es del todo certero, ya que unicamente una persona valoró esta cinta. 
+```{r}
+worstvalue <- head(order(datos$voteAvg, decreasing = F),n=1)
+head(datos[worstvalue,c("voteAvg","title")])
+```
+
+
 ### 4.5. (8 puntos) ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
 
 se puede observar que cada vez se hacen mas peliculas conforme pasa el tiempo esto debe ser por la facilidad que ahora se tienen con las camaras y el audio conforme la tecnologia va avanzando.
@@ -343,23 +352,75 @@ head(datos[topvotesDirector,c("director","voteAvg")], n =20)
 
 ### 4.11. (8 puntos) ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
 
+Películas con más ingresos
+```{r}
+gananciasVSpresupuesto <- order(datos$revenue, decreasing = T)
+head(datos[gananciasVSpresupuesto,c("budget","revenue","title")])
+
+```
+
+Películas con más presupuesto
+```{r}
+gananciasVSpresupuesto <- order(datos$budget, decreasing = T)
+head(datos[gananciasVSpresupuesto,c("budget","revenue","title")])
+```
+Diagrama de dispersión
+```{r}
+qqnorm(x = datos$budget, y = datos$revenue)
+
+```
+La gráfica nos dice que si existe una relación entre presupuesto y ganancia,a mayor presupuesto, tiende a generar mayor cantidad de ingresos en cines.
 
 
 ### 4.12. (7 puntos) ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
+```{r}
+
+date <- datos %>% separate(releaseDate, c("y", "m", "d"), sep = "-")
+gananciasVSpresupuesto <- order(date$m, decreasing = T)
+head(date[gananciasVSpresupuesto,c("m","revenue","title")],)
+
+date$m <-as.numeric(date$m)
+meses = date$m
+kurtosis(meses, na.rm = T)
+```
+
 
 ### 4.13. (8 puntos) ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
 
+Según la tabla siguiente, el mes de septiembre es el mes donde se estrenan más películas 
+
+```{r}
+
+sort(table(date$m), TRUE)
+```
+```{r}
+#date <- datos %>% separate(releaseDate, c("y", "m", "d"), sep = "-")
+#r <- order(date$revenue, decreasing = T)
+#head(date[r,c("m","revenue","title")],)
+
+
+```
+
+
 ### 4.14. (7 puntos) ¿Cómo se correlacionan las calificaciones con el éxito comercial?
 
-No hay correlacion entre el exito comercial y las calificaciones, esto puede ser porque las personas no votan solo ven la pelicula
+si hay correlacion entre el exito comercial y las calificaciones, esto puede ser por el efeto del boca a boca, al ser mejor valorada una película, recibe más recomendaciones para atraer a mas personas a los cines 
 ```{r}
-ingresos <- data.frame(datos$budget, datos$revenue, datos$originalTitle)
-correlacion <- data.frame(datos$revenue, datos$voteCount, datos$originalTitle)
-plot(correlacion[,2], ingresos[,1], main="Diagrama de Dispersion", xlab="voteCount", ylab="Revenue")
-abline(lm(ingresos[,1]~correlacion[,2]), col="blue")
+#ingresos <- data.frame(datos$budget, datos$revenue, datos$originalTitle)
+#correlacion <- data.frame(datos$revenue, datos$voteCount, datos$originalTitle)
+#plot(correlacion[,2], ingresos[,1], main="Diagrama de Dispersion", xlab="voteCount", ylab="Revenue")
+#abline(lm(ingresos[,1]~correlacion[,2]), col="blue")
+
+qqnorm(y = datos$voteAvg, x = datos$revenue, main="Diagrama de Dispersion")
 ```
 
 
 ### 4.15. (5 puntos) ¿A qué género principal pertenecen las películas más largas?
+
+```{r}
+gananciasVSpresupuesto <- order(datos$revenue, decreasing = T)
+head(datos[gananciasVSpresupuesto,c("budget","revenue","title")])
+```
+
 
 ### 5. (¡10 puntos extras!) Genere usted otras seis preguntas que le parezcan interesantes porque le permitan realizar otras exploraciones y respondalas. No puede repetir ninguna de las instrucciones anteriores.
