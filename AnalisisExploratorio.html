@@ -870,6 +870,8 @@ ingresos en cines.</p>
 <div id="puntos-se-asocian-ciertos-meses-de-lanzamiento-con-mejores-ingresos" class="section level3">
 <h3>4.12. (7 puntos) ¿Se asocian ciertos meses de lanzamiento con
 mejores ingresos?</h3>
+<p>los ultimos meses del año son los que generan mayores ingresos en
+taquilla</p>
 <pre class="r"><code>date &lt;- datos %&gt;% separate(releaseDate, c(&quot;y&quot;, &quot;m&quot;, &quot;d&quot;), sep = &quot;-&quot;)
 gananciasVSpresupuesto &lt;- order(date$m, decreasing = T)
 head(date[gananciasVSpresupuesto,c(&quot;m&quot;,&quot;revenue&quot;,&quot;title&quot;)],)</code></pre>
@@ -880,10 +882,6 @@ head(date[gananciasVSpresupuesto,c(&quot;m&quot;,&quot;revenue&quot;,&quot;title
 ## 32 12 101371017                                     Mars Attacks!
 ## 60 12  66023329                                          Scarface
 ## 67 12 871368364 The Lord of the Rings: The Fellowship of the Ring</code></pre>
-<pre class="r"><code>date$m &lt;-as.numeric(date$m)
-meses = date$m
-kurtosis(meses, na.rm = T)</code></pre>
-<pre><code>## [1] -1.165496</code></pre>
 </div>
 <div id="puntos-en-qué-meses-se-han-visto-los-lanzamientos-con-mejores-ingresoscuantas-películas-en-promedio-se-han-lanzado-por-mes" class="section level3">
 <h3>4.13. (8 puntos) ¿En qué meses se han visto los lanzamientos con
@@ -893,7 +891,7 @@ mes?</h3>
 estrenan más películas</p>
 <pre class="r"><code>sort(table(date$m), TRUE)</code></pre>
 <pre><code>## 
-##    9   10   12    8    6    3    7   11    2    5    4    1 
+##   09   10   12   08   06   03   07   11   02   05   04   01 
 ## 1079 1068  935  913  819  815  812  807  706  698  696  652</code></pre>
 <pre class="r"><code>#date &lt;- datos %&gt;% separate(releaseDate, c(&quot;y&quot;, &quot;m&quot;, &quot;d&quot;), sep = &quot;-&quot;)
 #r &lt;- order(date$revenue, decreasing = T)

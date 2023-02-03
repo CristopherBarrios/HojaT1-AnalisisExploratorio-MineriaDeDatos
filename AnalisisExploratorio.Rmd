@@ -373,15 +373,15 @@ La gráfica nos dice que si existe una relación entre presupuesto y ganancia,a 
 
 
 ### 4.12. (7 puntos) ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
+
+los ultimos meses del año son los que generan mayores ingresos en taquilla
 ```{r}
 
 date <- datos %>% separate(releaseDate, c("y", "m", "d"), sep = "-")
 gananciasVSpresupuesto <- order(date$m, decreasing = T)
 head(date[gananciasVSpresupuesto,c("m","revenue","title")],)
 
-date$m <-as.numeric(date$m)
-meses = date$m
-kurtosis(meses, na.rm = T)
+
 ```
 
 
