@@ -915,15 +915,24 @@ qqnorm(y = datos$voteAvg, x = datos$revenue, main=&quot;Diagrama de Dispersion&q
 <div id="puntos-a-qué-género-principal-pertenecen-las-películas-más-largas" class="section level3">
 <h3>4.15. (5 puntos) ¿A qué género principal pertenecen las películas
 más largas?</h3>
-<pre class="r"><code>gananciasVSpresupuesto &lt;- order(datos$revenue, decreasing = T)
-head(datos[gananciasVSpresupuesto,c(&quot;budget&quot;,&quot;revenue&quot;,&quot;title&quot;)])</code></pre>
-<pre><code>##         budget    revenue                        title
-## 3211 237000000 2847246203                       Avatar
-## 5953 356000000 2797800564            Avengers: Endgame
-## 308  200000000 2187463944                      Titanic
-## 4948 245000000 2068223624 Star Wars: The Force Awakens
-## 5954 300000000 2046239637       Avengers: Infinity War
-## 4915 150000000 1671713208               Jurassic World</code></pre>
+<p>El genero Documental es el que pertenece a las producciones mas
+largas</p>
+<pre class="r"><code>duracion &lt;- order(datos$runtime, decreasing = T)
+head(datos[duracion,c(&quot;runtime&quot;,&quot;genres&quot;,&quot;title&quot;)])</code></pre>
+<pre><code>##      runtime                genres
+## 9348     750           Documentary
+## 5359     400           Documentary
+## 3886     333     Drama|History|War
+## 963      317         Drama|History
+## 1264     248 Drama|History|Romance
+## 7066     247 Action|Crime|Thriller
+##                                                               title
+## 9348          How Ponyo was Born ~Hayao Miyazaki&#39;s Thought Process~
+## 5359 Crystal Lake Memories: The Complete History of Friday the 13th
+## 3886                                                       Napoleon
+## 963                                                            1900
+## 1264                                                      Cleopatra
+## 7066                             Kill Bill: The Whole Bloody Affair</code></pre>
 </div>
 <div id="puntos-extras-genere-usted-otras-seis-preguntas-que-le-parezcan-interesantes-porque-le-permitan-realizar-otras-exploraciones-y-respondalas.-no-puede-repetir-ninguna-de-las-instrucciones-anteriores." class="section level3">
 <h3>5. (¡10 puntos extras!) Genere usted otras seis preguntas que le

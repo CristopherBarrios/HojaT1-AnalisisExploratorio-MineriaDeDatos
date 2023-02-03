@@ -417,9 +417,11 @@ qqnorm(y = datos$voteAvg, x = datos$revenue, main="Diagrama de Dispersion")
 
 ### 4.15. (5 puntos) ¿A qué género principal pertenecen las películas más largas?
 
+El genero Documental es el que pertenece a las producciones mas largas
+
 ```{r}
-gananciasVSpresupuesto <- order(datos$revenue, decreasing = T)
-head(datos[gananciasVSpresupuesto,c("budget","revenue","title")])
+duracion <- order(datos$runtime, decreasing = T)
+head(datos[duracion,c("runtime","genres","title")])
 ```
 
 
