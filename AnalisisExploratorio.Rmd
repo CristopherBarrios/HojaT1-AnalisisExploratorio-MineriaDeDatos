@@ -144,15 +144,22 @@ kurtosis(castWomen, na.rm = T)
 
 ##### Variables cualitativas tabla de frecuencias
 
-original_title
-```{r}
-#table(datos$originalTitle)
-```
+Estas primeras 2 variables si se pueden hacer tablas de frecuencias pero el resto no debido a la cantidad de datos que estas contienen
 
 originalLanguage
 ```{r}
 table(datos$originalLanguage)
 ```
+video
+```{r}
+table(datos$video)
+```
+
+original_title
+```{r}
+#table(datos$originalTitle)
+```
+
 title
 ```{r}
 #table(datos$title)
@@ -163,10 +170,7 @@ homePage
 #table(datos$homePage)
 ```
 
-video
-```{r}
-table(datos$video)
-```
+
 director
 ```{r}
 #table(datos$director)
@@ -239,6 +243,10 @@ datos[topcount,c("title","voteCount")]
 ### 4.4. (3 puntos) ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
 
 ### 4.5. (8 puntos) ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
+
+se puede observar que cada vez se hacen mas peliculas conforme pasa el tiempo esto debe ser por la facilidad que ahora se tienen con las camaras y el audio conforme la tecnologia va avanzando.
+
+El año que se hicieron mas peliculas es en 2020
 ```{r}
 #title, titulo
 #releaseDAte, fecha de lanzamiento
@@ -277,19 +285,80 @@ barplot(table(totalGenres))
 
 ### 4.7. (8 puntos) ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 
+Las peliculas del genero de accion fueron las que obtuvieron mayores ganancias
+```{r}
+worth <- data.frame(datos$revenue, datos$genres, datos$title)
+ordenadas <- data.frame(worth[order(-datos$revenue), ])
+
+head(ordenadas, 5)
+```
+
 ### 4.8. (3 puntos) ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
+
+Como se puede apreciar parece que no influye, ya que avatar tiene menos actores y es la que tiene mas ingresos y luego le sigue avengers que tienen mas actores, pero estan en segundo lugar.
+```{r}
+revenueByMovie <- order(datos$revenue, decreasing = T)
+head(datos[revenueByMovie,c("actorsAmount","revenue","title")])
+```
 
 ### 4.9. (3 puntos) ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
 
+Se ha llegado a la conclusion de que la cantidad de actores tanto de hombres como de mujeres no es un factor que influya notablemente los ingresos y la popularidad
+```{r}
+#mujeres
+womenMoviePopularity <- order(datos$popularity, decreasing = T)
+womenMovieRevenue <- order(datos$revenue, decreasing = T)
+
+#hombres
+menMoviePopularity <- order(datos$popularity, decreasing = T)
+menMovieRevenue <- order(datos$revenue, decreasing = T)
+```
+
+Vemos que son menos los actores en la primera pelicula y es mas popular, luego se puede ver de que la siguiente pelicula tiene mas actores tanto hombres como mujeres y es menos popular, luego parece que hay una correlacion entre el numero de actores y la popularidad pero luego el ultimo se pierde esa correlacion
+```{r}
+head(datos[womenMoviePopularity,c("castWomenAmount","popularity")])
+```
+
+```{r}
+head(datos[menMoviePopularity,c("castMenAmount","popularity")])
+```
+
+vemos un orden similar en los primeros de las mujeres con el punto anterior, pero en el de los hombres vemos que no hay una correlacion entre las ganancias y actores.
+```{r}
+head(datos[womenMovieRevenue,c("castWomenAmount","revenue")])
+```
+
+```{r}
+head(datos[menMovieRevenue,c("castMenAmount","revenue")])
+```
+
 ### 4.10. (8 puntos) ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 
+Estas son las veinte peliculas mas calificadas, podemos observar que hay peliculas donde no hay directores, esto puede ser de que sean anonimos, y tambien hay en una pelicula que al juzgar por los nombres es una pelicula coreana que tiene bastantes directores
+```{r}
+topvotesDirector <- order(datos$voteAvg, decreasing = T)
+head(datos[topvotesDirector,c("director","voteAvg")], n =20)
+```
+
+
 ### 4.11. (8 puntos) ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
+
+
 
 ### 4.12. (7 puntos) ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
 
 ### 4.13. (8 puntos) ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
 
 ### 4.14. (7 puntos) ¿Cómo se correlacionan las calificaciones con el éxito comercial?
+
+No hay correlacion entre el exito comercial y las calificaciones, esto puede ser porque las personas no votan solo ven la pelicula
+```{r}
+ingresos <- data.frame(datos$budget, datos$revenue, datos$originalTitle)
+correlacion <- data.frame(datos$revenue, datos$voteCount, datos$originalTitle)
+plot(correlacion[,2], ingresos[,1], main="Diagrama de Dispersion", xlab="voteCount", ylab="Revenue")
+abline(lm(ingresos[,1]~correlacion[,2]), col="blue")
+```
+
 
 ### 4.15. (5 puntos) ¿A qué género principal pertenecen las películas más largas?
 
